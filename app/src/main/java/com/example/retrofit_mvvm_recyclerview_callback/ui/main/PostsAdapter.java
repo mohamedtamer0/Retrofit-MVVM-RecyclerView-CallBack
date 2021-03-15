@@ -12,9 +12,10 @@ import com.example.retrofit_mvvm_recyclerview_callback.R;
 import com.example.retrofit_mvvm_recyclerview_callback.pojo.PostModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHolder> {
-    private ArrayList<PostModel> OJGName = new ArrayList<PostModel>();
+    private List<PostModel> postsList = new ArrayList<>();
 
     @NonNull
     @Override
@@ -24,16 +25,29 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHold
 
     @Override
     public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
+        holder.titleTV.setText(postsList.get(position).getTitle());
+        holder.userTV.setText(postsList.get(position).getUserId() + "");
+        holder.bodyTV.setText(postsList.get(position).getBody());
     }
 
     @Override
     public int getItemCount() {
-        return OJGName.size();
+        return postsList.size();
     }
 
+    public void setList(List<PostModel> postsList) {
+        this.postsList = postsList;
+        notifyDataSetChanged();
+    }
+
+
     public class PostViewHolder extends RecyclerView.ViewHolder {
+        TextView titleTV, userTV, bodyTV;
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
+            titleTV = itemView.findViewById(R.id.titleTV);
+            userTV = itemView.findViewById(R.id.userIDTV);
+            bodyTV = itemView.findViewById(R.id.bodyTV);
         }
     }
 }

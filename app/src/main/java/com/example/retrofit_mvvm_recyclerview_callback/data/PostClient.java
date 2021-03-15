@@ -2,6 +2,8 @@ package com.example.retrofit_mvvm_recyclerview_callback.data;
 
 import com.example.retrofit_mvvm_recyclerview_callback.pojo.PostModel;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -28,7 +30,7 @@ public class PostClient {
         return INSTANCE;
     }
 
-    public Call<PostModel> getPosts() {
+    public Call<List<PostModel>> getPosts() {
         return postInterface.getPosts();
     }
 
