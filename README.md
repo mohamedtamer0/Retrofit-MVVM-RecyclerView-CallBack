@@ -3,7 +3,7 @@
 
 
 
-
+```
     //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
@@ -23,3 +23,6 @@
 
 
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.7.1'
+```
+
+![Screenshot_1632957819](https://user-images.githubusercontent.com/51374446/135361801-51e7d1cb-922f-4a80-a785-d116ec464013.png)
