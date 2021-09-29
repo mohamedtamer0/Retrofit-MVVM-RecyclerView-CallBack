@@ -14,6 +14,7 @@ import io.reactivex.Observer;
 
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
 import io.reactivex.schedulers.Schedulers;
@@ -22,15 +23,22 @@ import io.reactivex.schedulers.Schedulers;
 public class PostViewModel extends ViewModel {
     MutableLiveData<List<PostModel>> postsMutableLiveData = new MutableLiveData<>();
 
-    public void getPosts(){
+    CompositeDisposable compositeDisposable = new CompositeDisposable();
+
+    public void getPosts() {
         Single<List<PostModel>> observable = PostClient.getINSTANCE().getPosts()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
 
-        observable.subscribe(o -> postsMutableLiveData.setValue(o));
+        compositeDisposable.add(observable.subscribe(o -> postsMutableLiveData.setValue(o)));
 
 
     }
 
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        compositeDisposable.clear();
+    }
 }
 
